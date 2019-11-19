@@ -21,8 +21,18 @@ export class Login extends Component {
         let params = queryString.parse(this.props.location.search)
         const code = params.code;
 
-        axios.post(`${GITHUB_CONFIG.TOKEN_URL}client_id=${GITHUB_CONFIG.CLIENT_ID}&client_secret=${GITHUB_CONFIG.CLIENT_SECRET}&code=${code}
-                    &scope=${GITHUB_CONFIG.SCOPE}`,{ mode: 'no-cors', headers:headers}).then((res)=>{
+        axios.post(`${MS_CONFIG.TOKEN_URL}client_id=${MS_CONFIG.CLIENT_ID}&client_secret=${MS_CONFIG.CLIENT_SECRET}
+                    &scope=${MS_CONFIG.SCOPE}`,
+                    { 
+                        mode: 'no-cors', 
+                        headers:headers,
+                        data: {
+                            code:code,
+                            grant_type: 'authorization_code',
+                            client_secret:MS_CONFIG.CLIENT_SECRET
+                        }
+                    }
+            ).then((res)=>{
         
             console.log(queryString.parse(res.data));
             const data = queryString.parse(res.data);

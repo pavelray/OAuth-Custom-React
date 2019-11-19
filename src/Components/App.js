@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route  path="/" exact component={Authorize} />
-        <Route  path="/login" exact component={Login} />
+        <Route  path="/signin-oidc" exact component={Login} />
         <Route  path="/home" exact component={Home} />
       </Switch>
     </BrowserRouter>
